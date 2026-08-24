@@ -59,11 +59,11 @@ INSERT INTO worker
 (name, contact, location, email, service_range, availability)
 VALUES
 ('Rakesh Kumar', '9123456780', 'rakesh@example.com', 'Bihta', 25.00, TRUE),
-('Manoj Yadav', '9123456781', 'rakesh@example.com', 'Patna', 40.00, TRUE),
-('Vikash Singh', '9123456782', 'rakesh@example.com', 'Danapur', 30.00, TRUE),
-('Rajiv Kumar', '9123456783', 'rakesh@example.com', 'Barh', 35.00, FALSE),
-('Pankaj Sharma', '9123456784', 'rakesh@example.com', 'Fatuha', 20.00, TRUE),
-('Sanjay Prasad', '9123456785', 'rakesh@example.com', 'Patna', 50.00, TRUE);
+('Manoj Yadav', '9123456781', 'manoj@example.com', 'Patna', 40.00, TRUE),
+('Vikash Singh', '9123456782', 'vikash@example.com', 'Danapur', 30.00, TRUE),
+('Rajiv Kumar', '9123456783', 'rajiv@example.com', 'Barh', 35.00, FALSE),
+('Pankaj Sharma', '9123456784', 'pankaj@example.com', 'Fatuha', 20.00, TRUE),
+('Sanjay Prasad', '9123456785', 'sanjay@example.com', 'Patna', 50.00, TRUE);
 
 -- =====================================================
 -- WORKER_SERVICE SAMPLE DATA
