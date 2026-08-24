@@ -12,10 +12,12 @@ USE agri_service_connect;
 -- =====================================================
 
 CREATE TABLE farmer (
-    farmer_id INT PRIMARY KEY AUTO_INCREMENT,
+    farmer_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     contact VARCHAR(15) NOT NULL,
-    location VARCHAR(150) NOT NULL
+    email VARCHAR(150) UNIQUE,
+    location VARCHAR(150) NOT NULL,
+    PRIMARY KEY (farmer_id)
 );
 
 -- =====================================================
@@ -68,6 +70,7 @@ CREATE TABLE worker (
     worker_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     contact VARCHAR(15) NOT NULL,
+    email VARCHAR(150) UNIQUE,
     location VARCHAR(150) NOT NULL,
     service_range DECIMAL(6,2),
     availability BOOLEAN DEFAULT TRUE

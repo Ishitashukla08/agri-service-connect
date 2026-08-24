@@ -2,13 +2,13 @@
 -- SAMPLE DATA
 -- =====================================================
 
-INSERT INTO farmer (name, contact, location)
+INSERT INTO farmer (name, contact, email, location)
 VALUES
-('Anita Mishra', '9876543210', 'Bihta'),
-('Prem Chaudhary', '9876543211', 'Patna'),
-('Amit Saxena', '9876543212', 'Kankarbagh'),
-('Shobha Sinha', '9876543213', 'Danapur'),
-('Sujeet Yadav', '9876543214', 'Barh');
+('Anita Mishra', '9876543210', 'anita@example.com', 'Bihta'),
+('Prem Chaudhary', '9876543211', 'prem@example.com', 'Patna'),
+('Amit Saxena', '9876543212', 'amit@example.com', 'Kankarbagh'),
+('Shobha Sinha', '9876543213', 'shobha@example.com', 'Danapur'),
+('Sujeet Yadav', '9876543214', 'sujeet@example.com', 'Barh');
 
 -- =====================================================
 -- LAND SAMPLE DATA
@@ -56,14 +56,14 @@ VALUES
 -- =====================================================
 
 INSERT INTO worker
-(name, contact, location, service_range, availability)
+(name, contact, location, email, service_range, availability)
 VALUES
-('Rakesh Kumar', '9123456780', 'Bihta', 25.00, TRUE),
-('Manoj Yadav', '9123456781', 'Patna', 40.00, TRUE),
-('Vikash Singh', '9123456782', 'Danapur', 30.00, TRUE),
-('Rajiv Kumar', '9123456783', 'Barh', 35.00, FALSE),
-('Pankaj Sharma', '9123456784', 'Fatuha', 20.00, TRUE),
-('Sanjay Prasad', '9123456785', 'Patna', 50.00, TRUE);
+('Rakesh Kumar', '9123456780', 'rakesh@example.com', 'Bihta', 25.00, TRUE),
+('Manoj Yadav', '9123456781', 'rakesh@example.com', 'Patna', 40.00, TRUE),
+('Vikash Singh', '9123456782', 'rakesh@example.com', 'Danapur', 30.00, TRUE),
+('Rajiv Kumar', '9123456783', 'rakesh@example.com', 'Barh', 35.00, FALSE),
+('Pankaj Sharma', '9123456784', 'rakesh@example.com', 'Fatuha', 20.00, TRUE),
+('Sanjay Prasad', '9123456785', 'rakesh@example.com', 'Patna', 50.00, TRUE);
 
 -- =====================================================
 -- WORKER_SERVICE SAMPLE DATA
