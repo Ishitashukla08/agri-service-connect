@@ -31,6 +31,10 @@
             <a href="#how-it-works">How It Works</a>
             <a href="#reviews">Reviews</a>
             <a href="#contact">Contact</a>
+            <a href="#" onclick="openDashboard(); return false;">Dashboard</a>
+            <a href="#" onclick="openProviderDashboard(); return false;">
+    Provider Dashboard
+</a>
         </nav>
 
         <div class="nav-actions">
@@ -802,6 +806,325 @@
 </div>
     </div>
 </div>
+
+<!-- FARMER DASHBOARD -->
+<section class="dashboard-section" id="farmerDashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <span class="section-label">FARMER DASHBOARD</span>
+            <h2>Welcome back, Farmer</h2>
+            <p>Manage your land, services and requests from one place.</p>
+        </div>
+
+        <button class="dashboard-service-btn" onclick="closeDashboard(); document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+            Find a Service →
+        </button>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="dashboard-stats">
+
+        <div class="dashboard-stat">
+            <span>🌾</span>
+            <h3>2</h3>
+            <p>My Lands</p>
+        </div>
+
+        <div class="dashboard-stat">
+            <span>📋</span>
+            <h3>3</h3>
+            <p>Service Requests</p>
+        </div>
+
+        <div class="dashboard-stat">
+            <span>✓</span>
+            <h3>1</h3>
+            <p>Completed</p>
+        </div>
+
+        <div class="dashboard-stat">
+            <span>⏳</span>
+            <h3>2</h3>
+            <p>Pending</p>
+        </div>
+
+    </div>
+
+    <!-- My Requests -->
+    <div class="dashboard-panel">
+
+        <div class="panel-heading">
+            <div>
+                <span class="section-label">MY REQUESTS</span>
+                <h3>Recent service requests</h3>
+            </div>
+        </div>
+
+        <div class="request-table">
+
+            <div class="request-row request-head">
+                <span>Service</span>
+                <span>Required Date</span>
+                <span>Status</span>
+            </div>
+
+            <div class="request-row">
+                <span>Tractor & Ploughing</span>
+                <span>28 Aug 2026</span>
+                <span class="status pending">Pending</span>
+            </div>
+
+            <div class="request-row">
+                <span>Plantation</span>
+                <span>30 Aug 2026</span>
+                <span class="status accepted">Accepted</span>
+            </div>
+
+            <div class="request-row">
+                <span>Harvesting</span>
+                <span>15 Aug 2026</span>
+                <span class="status completed">Completed</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- My Land -->
+    <div class="dashboard-panel">
+
+        <div class="panel-heading land-heading">
+    <div>
+        <span class="section-label">MY LAND</span>
+        <h3>Registered land</h3>
+    </div>
+
+    <button class="add-land-btn" onclick="openLandForm()">
+        + Add New Land
+    </button>
+</div>
+
+        <div class="land-list">
+
+            <div class="land-item">
+                <div>
+                    <h4>Bihta</h4>
+                    <p>2.50 acres · Irrigation available</p>
+                </div>
+                <span>Land #1</span>
+            </div>
+
+            <div class="land-item">
+                <div>
+                    <h4>Patna</h4>
+                    <p>1.75 acres · Irrigation available</p>
+                </div>
+                <span>Land #2</span>
+            </div>
+
+        </div>
+        <div class="add-land-form" id="addLandForm" style="display: none;">
+
+    <h4>Add New Land</h4>
+
+    <form onsubmit="addLand(event)">
+
+        <label>Location</label>
+        <input
+            type="text"
+            id="landLocation"
+            placeholder="e.g. Bihta"
+            required
+        >
+
+        <label>Area (acres)</label>
+        <input
+            type="number"
+            id="landArea"
+            placeholder="e.g. 2.50"
+            step="0.01"
+            min="0.01"
+            required
+        >
+
+        <label>Irrigation Available</label>
+
+        <div class="irrigation-options">
+            <label>
+                <input type="radio" name="irrigation" value="1" required>
+                Yes
+            </label>
+
+            <label>
+                <input type="radio" name="irrigation" value="0">
+                No
+            </label>
+        </div>
+
+        <button type="submit" class="request-submit">
+            Add Land
+        </button>
+
+    </form>
+
+</div>
+
+    </div>
+
+</section>
+
+<!-- SERVICE PROVIDER DASHBOARD -->
+<section class="dashboard-section" id="providerDashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <span class="section-label">SERVICE PROVIDER</span>
+            <h2>Provider Dashboard</h2>
+            <p>Manage service requests and your agricultural work.</p>
+        </div>
+
+        <button class="dashboard-service-btn"
+                onclick="closeProviderDashboard(); document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+            View Services →
+        </button>
+    </div>
+
+
+    <!-- Summary -->
+    <div class="dashboard-stats">
+
+        <div class="dashboard-stat">
+            <span>📋</span>
+            <h3>4</h3>
+            <p>New Requests</p>
+        </div>
+
+        <div class="dashboard-stat">
+            <span>✓</span>
+            <h3>2</h3>
+            <p>Active Bookings</p>
+        </div>
+
+        <div class="dashboard-stat">
+            <span>★</span>
+            <h3>4.8</h3>
+            <p>My Rating</p>
+        </div>
+
+        <div class="dashboard-stat">
+            <span>✓</span>
+            <h3>18</h3>
+            <p>Completed Jobs</p>
+        </div>
+
+    </div>
+
+
+    <!-- Incoming Requests -->
+    <div class="dashboard-panel">
+
+        <div class="panel-heading">
+            <div>
+                <span class="section-label">SERVICE REQUESTS</span>
+                <h3>Incoming requests</h3>
+            </div>
+        </div>
+
+
+        <div class="provider-request-list">
+
+            <div class="provider-request">
+
+                <div class="provider-request-info">
+                    <h4>Tractor & Ploughing</h4>
+                    <p>Farmer: Anita Mishra</p>
+                    <p>Location: Bihta · 2.50 acres</p>
+                    <p>Required: 28 Aug 2026</p>
+                </div>
+
+                <div class="provider-actions">
+                    <button
+                        class="accept-btn"
+                        onclick="handleRequest('accepted')">
+                        Accept
+                    </button>
+
+                    <button
+                        class="reject-btn"
+                        onclick="handleRequest('rejected')">
+                        Reject
+                    </button>
+                </div>
+
+            </div>
+
+
+            <div class="provider-request">
+
+                <div class="provider-request-info">
+                    <h4>Plantation</h4>
+                    <p>Farmer: Prem Chaudhary</p>
+                    <p>Location: Patna · 3.00 acres</p>
+                    <p>Required: 30 Aug 2026</p>
+                </div>
+
+                <div class="provider-actions">
+                    <button
+                        class="accept-btn"
+                        onclick="handleRequest('accepted')">
+                        Accept
+                    </button>
+
+                    <button
+                        class="reject-btn"
+                        onclick="handleRequest('rejected')">
+                        Reject
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Active Bookings -->
+    <div class="dashboard-panel">
+
+        <div class="panel-heading">
+            <div>
+                <span class="section-label">ACTIVE BOOKINGS</span>
+                <h3>Current work</h3>
+            </div>
+        </div>
+
+        <div class="request-table">
+
+            <div class="request-row request-head">
+                <span>Service</span>
+                <span>Farmer</span>
+                <span>Status</span>
+            </div>
+
+            <div class="request-row">
+                <span>Harvesting</span>
+                <span>Shobha Sinha</span>
+                <span class="status accepted">Booked</span>
+            </div>
+
+            <div class="request-row">
+                <span>Irrigation</span>
+                <span>Sujeet Yadav</span>
+                <span class="status pending">In Progress</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     <script src="script.js"></script>
 

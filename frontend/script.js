@@ -199,3 +199,70 @@ function filterServices() {
             searchMatch && categoryMatch ? "" : "none";
     });
 }
+
+// ================= FARMER DASHBOARD =================
+
+function openDashboard() {
+    document.getElementById("farmerDashboard").style.display = "block";
+
+    document.getElementById("farmerDashboard").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function closeDashboard() {
+    document.getElementById("farmerDashboard").style.display = "none";
+}
+
+// ================= ADD LAND =================
+
+function openLandForm() {
+    document.getElementById("addLandForm").style.display = "block";
+}
+
+function addLand(event) {
+    event.preventDefault();
+
+    const location = document.getElementById("landLocation").value;
+    const area = document.getElementById("landArea").value;
+    const irrigation = document.querySelector(
+        'input[name="irrigation"]:checked'
+    ).value;
+
+    alert(
+        "Land added successfully!\n\n" +
+        "Location: " + location +
+        "\nArea: " + area + " acres" +
+        "\nIrrigation: " + (irrigation === "1" ? "Available" : "Not Available") +
+        "\n\nThis will be saved to the database after backend integration."
+    );
+
+    document.getElementById("addLandForm").style.display = "none";
+    event.target.reset();
+}
+
+// ================= PROVIDER DASHBOARD =================
+
+function openProviderDashboard() {
+    document.getElementById("providerDashboard").style.display = "block";
+
+    document.getElementById("providerDashboard").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function closeProviderDashboard() {
+    document.getElementById("providerDashboard").style.display = "none";
+}
+
+function handleRequest(status) {
+
+    if (status === "accepted") {
+        alert(
+            "Service request accepted!\n\n" +
+            "The booking will be created after backend integration."
+        );
+    } else {
+        alert("Service request rejected.");
+    }
+}
