@@ -93,7 +93,7 @@
             <div class="hero-card">
 
                 <div class="hero-card-top">
-                    <span>Ready Hands Nearby</span>
+                    <span>Available near you</span>
                     <span class="online-dot">●</span>
                 </div>
 
@@ -187,7 +187,24 @@
 
             </div>
 
+            <div class="service-tools">
+    <input
+        type="text"
+        id="serviceSearch"
+        placeholder="Search services..."
+        onkeyup="filterServices()"
+    >
 
+    <select id="serviceFilter" onchange="filterServices()">
+        <option value="all">All Services</option>
+        <option value="Plantation">Plantation</option>
+        <option value="Tractor & Ploughing">Tractor & Ploughing</option>
+        <option value="Irrigation">Irrigation</option>
+        <option value="Harvesting">Harvesting</option>
+        <option value="Crop Maintenance">Crop Maintenance</option>
+        <option value="Equipment">Equipment</option>
+    </select>
+</div>
             <div class="service-grid">
 
                 <div class="service-card" onclick="selectService('Plantation')">
@@ -701,6 +718,88 @@
             </p>
         </div>
 
+    </div>
+</div>
+
+<!-- SERVICE DETAILS MODAL -->
+<div class="service-overlay" id="serviceOverlay">
+    <div class="service-detail-box">
+
+        <button class="service-close" onclick="closeService()">×</button>
+
+        <span class="section-label">SERVICE DETAILS</span>
+
+        <h2 id="selectedServiceName">Tractor & Ploughing</h2>
+
+        <p id="selectedServiceDescription">
+            Find skilled workers for your agricultural needs.
+        </p>
+
+        <div class="worker-list">
+
+            <div class="worker-card">
+                <div>
+                    <h3>Rajesh Kumar</h3>
+                    <p>Experienced agricultural worker</p>
+                    <span>★ 4.8 &nbsp; | &nbsp; 5 years experience</span>
+                </div>
+
+                <button onclick="requestService('Rajesh Kumar')">
+                    Request Service
+                </button>
+            </div>
+
+            <div class="worker-card">
+                <div>
+                    <h3>Manoj Yadav</h3>
+                    <p>Skilled service provider</p>
+                    <span>★ 4.7 &nbsp; | &nbsp; 4 years experience</span>
+                </div>
+
+                <button onclick="requestService('Manoj Yadav')">
+                    Request Service
+                </button>
+            </div>
+
+        </div>
+
+        <div class="request-form" id="requestForm" style="display: none;">
+
+    <h3>Request this service</h3>
+
+    <form onsubmit="submitServiceRequest(event)">
+
+        <label>Select your land</label>
+        <select id="landSelect" required>
+            <option value="">Select land</option>
+            <option value="1">Bihta — 2.50 acres</option>
+            <option value="2">Patna — 1.75 acres</option>
+            <option value="3">Patna — 3.00 acres</option>
+            <option value="4">Kankarbagh — 1.50 acres</option>
+            <option value="5">Danapur — 4.25 acres</option>
+            <option value="6">Fatuha — 2.00 acres</option>
+        </select>
+
+        <label>Required date</label>
+        <input type="date" id="requiredDate" required>
+
+        <label>Duration (days)</label>
+        <input type="number" id="duration" min="1" placeholder="e.g. 2" required>
+
+        <label>Description</label>
+        <textarea
+            id="requestDescription"
+            placeholder="Describe what you need..."
+            rows="4">
+        </textarea>
+
+        <button type="submit" class="request-submit">
+            Submit Service Request
+        </button>
+
+    </form>
+
+</div>
     </div>
 </div>
 

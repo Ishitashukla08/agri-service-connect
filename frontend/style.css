@@ -1265,3 +1265,164 @@ footer {
     color: #238443;
     font-weight: 600;
 }
+
+.service-tools {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.service-tools input,
+.service-tools select {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.service-tools input {
+    width: 300px;
+}
+
+/* ================= SERVICE DETAILS ================= */
+
+.service-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.service-detail-box {
+    width: 600px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.service-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.service-detail-box h2 {
+    margin: 10px 0;
+}
+
+.service-detail-box > p {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.worker-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.worker-card {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.worker-card h3 {
+    margin-bottom: 5px;
+}
+
+.worker-card p {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.worker-card span {
+    font-size: 13px;
+    color: #238443;
+}
+
+.worker-card button {
+    border: none;
+    background: #238443;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.worker-card button:hover {
+    background: #1b7138;
+}
+
+/* ================= SERVICE REQUEST ================= */
+
+.request-form {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+.request-form h3 {
+    margin-bottom: 20px;
+}
+
+.request-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.request-form label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.request-form input,
+.request-form select,
+.request-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.request-form textarea {
+    resize: vertical;
+}
+
+.request-submit {
+    margin-top: 10px;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #238443;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.request-submit:hover {
+    background: #1b7138;
+}

@@ -45,8 +45,53 @@ function openRegister() {
 
 function selectService(serviceName) {
 
-    showMessage(
-        `${serviceName} selected. Service providers will appear here.`
+    const descriptions = {
+        "Plantation": "Plantation and agricultural labour services.",
+        "Tractor & Ploughing": "Find tractor operators and land preparation services.",
+        "Irrigation": "Watering and irrigation-related services.",
+        "Harvesting": "Get skilled help during harvesting season.",
+        "Crop Maintenance": "Regular maintenance and field work for your crops.",
+        "Equipment": "Access agricultural equipment and tools."
+    };
+
+    document.getElementById("selectedServiceName").innerText = serviceName;
+
+    document.getElementById("selectedServiceDescription").innerText =
+        descriptions[serviceName] || "Find reliable agricultural services near you.";
+
+    document.getElementById("serviceOverlay").style.display = "flex";
+}
+
+function closeService() {
+    document.getElementById("serviceOverlay").style.display = "none";
+}
+
+function requestService(workerName) {
+
+    document.getElementById("requestForm").style.display = "block";
+
+    document.getElementById("requestForm").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function submitServiceRequest(event) {
+
+    event.preventDefault();
+
+    const land = document.getElementById("landSelect").value;
+    const date = document.getElementById("requiredDate").value;
+    const duration = document.getElementById("duration").value;
+
+    if (!land || !date || !duration) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    alert(
+        "Service request submitted successfully!\n\n" +
+        "Your request will be connected to the database later."
     );
 }
 
@@ -137,4 +182,20 @@ function handleLogin(event) {
 function handleRegister(event) {
     event.preventDefault();
     alert("Registration will be connected to the database later.");
+}
+
+function filterServices() {
+    const search = document.getElementById("serviceSearch").value.toLowerCase();
+    const category = document.getElementById("serviceFilter").value;
+
+    document.querySelectorAll(".service-card").forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const service = card.querySelector("h3").innerText;
+
+        const searchMatch = text.includes(search);
+        const categoryMatch = category === "all" || service === category;
+
+        card.style.display =
+            searchMatch && categoryMatch ? "" : "none";
+    });
 }
