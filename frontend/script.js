@@ -258,11 +258,121 @@ function closeProviderDashboard() {
 function handleRequest(status) {
 
     if (status === "accepted") {
-        alert(
-            "Service request accepted!\n\n" +
-            "The booking will be created after backend integration."
-        );
+
+        showNotification("Service request accepted successfully.");
+
     } else {
-        alert("Service request rejected.");
+
+        showNotification("Service request rejected.");
+
     }
+}
+
+// ================= BOOKING / PAYMENT / REVIEW =================
+
+let selectedRating = 0;
+
+function openBooking(service, provider) {
+
+    document.getElementById("bookingService").innerText =
+        service || "Tractor & Ploughing";
+
+    document.getElementById("bookingProvider").innerText =
+        provider || "Rajesh Kumar";
+
+    document.getElementById("bookingOverlay").style.display = "flex";
+
+    showBookingStep();
+}
+
+function closeBooking() {
+    document.getElementById("bookingOverlay").style.display = "none";
+}
+
+function showBookingStep() {
+
+    document.getElementById("bookingStep").style.display = "block";
+    document.getElementById("paymentStep").style.display = "none";
+    document.getElementById("paymentSuccess").style.display = "none";
+    document.getElementById("reviewStep").style.display = "none";
+}
+
+function showPayment() {
+
+    document.getElementById("bookingStep").style.display = "none";
+    document.getElementById("paymentStep").style.display = "block";
+}
+
+function makePayment() {
+
+    const method = document.querySelector(
+        'input[name="paymentMethod"]:checked'
+    ).value;
+
+    document.getElementById("paymentStep").style.display = "none";
+    document.getElementById("paymentSuccess").style.display = "block";
+
+    showNotification("Payment successful.");
+
+    console.log("Payment method:", method);
+}
+
+function showReview() {
+
+    document.getElementById("paymentSuccess").style.display = "none";
+    document.getElementById("reviewStep").style.display = "block";
+}
+
+function selectRating(rating) {
+
+    selectedRating = rating;
+
+    const buttons = document.querySelectorAll(
+        ".rating-selector button"
+    );
+
+    buttons.forEach((button, index) => {
+
+        if (index < rating) {
+            button.classList.add("selected");
+        } else {
+            button.classList.remove("selected");
+        }
+
+    });
+}
+
+function submitReview() {
+
+    if (selectedRating === 0) {
+        alert("Please select a rating.");
+        return;
+    }
+
+    alert(
+        "Thank you for your feedback!\n\n" +
+        "Rating: " + selectedRating + "/5\n\n" +
+        "Your review will be saved after backend integration."
+    );
+
+    closeBooking();
+}
+
+function showNotification(message) {
+
+    const notification = document.getElementById("notification");
+
+    document.getElementById("notificationText").innerText = message;
+
+    notification.classList.add("show");
+
+    setTimeout(() => {
+        notification.classList.remove("show");
+    }, 3000);
+}
+
+function completeJob() {
+
+    showNotification("Job marked as completed.");
+
 }

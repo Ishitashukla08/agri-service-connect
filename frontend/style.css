@@ -1701,3 +1701,226 @@ footer {
 .reject-btn:hover {
     background: #eee;
 }
+
+/* ================= BOOKING / PAYMENT ================= */
+
+.booking-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+
+.booking-box {
+    width: 520px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.booking-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.booking-box h2 {
+    margin: 10px 0;
+}
+
+.booking-message {
+    color: #777;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.booking-summary {
+    background: #f8faf8;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.booking-summary div {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.booking-summary span {
+    color: #777;
+    font-size: 14px;
+}
+
+.booking-summary strong {
+    font-size: 14px;
+}
+
+.payment-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 9px;
+    background: #238443;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.payment-btn:hover {
+    background: #1b7138;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.success-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #e7f5eb;
+    color: #238443;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.rating-selector {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.rating-selector button {
+    border: none;
+    background: none;
+    font-size: 32px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.rating-selector button.selected {
+    color: #e4a72c;
+}
+
+#reviewComment {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 15px;
+}
+
+/* ================= FINAL POLISH ================= */
+
+.notification {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    background: #238443;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 9px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 2000;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.review-btn {
+    border: none;
+    background: #238443;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.review-btn:hover {
+    background: #1b7138;
+}
+
+@media (max-width: 768px) {
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .provider-request {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .request-row {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .service-tools {
+        flex-direction: column;
+    }
+
+    .service-tools input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .land-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .booking-box,
+    .service-detail-box {
+        padding: 25px;
+    }
+}

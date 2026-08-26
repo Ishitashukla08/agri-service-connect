@@ -16,6 +16,9 @@
 
 <body>
 
+    <div id="notification" class="notification">
+    <span id="notificationText"></span>
+</div>
     <!-- ================= NAVBAR ================= -->
 
     <header class="navbar">
@@ -890,6 +893,25 @@
         </div>
 
     </div>
+    <div class="request-card">
+
+    <div>
+        <span class="section-label">ACCEPTED</span>
+
+        <h3>Tractor & Ploughing</h3>
+
+        <p>Provider: Rajesh Kumar</p>
+        <p>Location: Bihta</p>
+        <p>Required Date: 28 Aug 2026</p>
+    </div>
+
+    <button
+        class="payment-btn"
+        onclick="openBooking('Tractor & Ploughing', 'Rajesh Kumar')">
+        View Booking & Pay →
+    </button>
+
+</div>
 
     <!-- My Land -->
     <div class="dashboard-panel">
@@ -1121,10 +1143,182 @@
             </div>
 
         </div>
+        <div class="request-row">
+    <span>Harvesting</span>
+    <span>Shobha Sinha</span>
+    <span>
+        <button class="review-btn" onclick="showReview()">
+            Give Review
+        </button>
+    </span>
+</div>
+
+    </div>
+    <div class="request-row">
+
+    <div>
+        <strong>Tractor & Ploughing</strong>
+        <p>Farmer: Anita Mishra</p>
+        <p>Location: Bihta</p>
+    </div>
+
+    <button
+        class="review-btn"
+        onclick="completeJob()">
+        Mark Completed
+    </button>
+
+</div>
+
+</section>
+
+<!-- BOOKING / PAYMENT / REVIEW -->
+<div class="booking-overlay" id="bookingOverlay">
+
+    <div class="booking-box">
+
+        <button class="booking-close" onclick="closeBooking()">×</button>
+
+        <!-- BOOKING -->
+        <div id="bookingStep">
+
+            <span class="section-label">BOOKING CONFIRMED</span>
+
+            <h2>Your service has been booked</h2>
+
+            <p class="booking-message">
+                Your service provider has accepted the request.
+            </p>
+
+            <div class="booking-summary">
+
+                <div>
+                    <span>Service</span>
+                    <strong id="bookingService">Tractor & Ploughing</strong>
+                </div>
+
+                <div>
+                    <span>Provider</span>
+                    <strong id="bookingProvider">Rajesh Kumar</strong>
+                </div>
+
+                <div>
+                    <span>Location</span>
+                    <strong>Bihta</strong>
+                </div>
+
+                <div>
+                    <span>Start Date</span>
+                    <strong>28 Aug 2026</strong>
+                </div>
+
+                <div>
+                    <span>Amount</span>
+                    <strong>₹2,500</strong>
+                </div>
+
+            </div>
+
+            <button class="payment-btn" onclick="showPayment()">
+                Proceed to Payment →
+            </button>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+        <div id="paymentStep" style="display:none;">
+
+            <span class="section-label">PAYMENT</span>
+
+            <h2>Complete your payment</h2>
+
+            <p class="booking-message">
+                Choose your preferred payment method.
+            </p>
+
+            <div class="payment-options">
+
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="UPI" checked>
+                    <span>UPI</span>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="Card">
+                    <span>Card</span>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="Cash">
+                    <span>Cash</span>
+                </label>
+
+            </div>
+
+            <button class="payment-btn" onclick="makePayment()">
+                Pay ₹2,500
+            </button>
+
+        </div>
+
+
+        <!-- PAYMENT SUCCESS -->
+        <div id="paymentSuccess" style="display:none;">
+
+            <div class="success-icon">✓</div>
+
+            <span class="section-label">PAYMENT SUCCESSFUL</span>
+
+            <h2>Payment received</h2>
+
+            <p class="booking-message">
+                Your booking is confirmed. You can track the service from your dashboard.
+            </p>
+
+            <button class="payment-btn" onclick="closeBooking()">
+                Done
+            </button>
+
+        </div>
+
+
+        <!-- REVIEW -->
+        <div id="reviewStep" style="display:none;">
+
+            <span class="section-label">SERVICE COMPLETED</span>
+
+            <h2>How was your experience?</h2>
+
+            <p class="booking-message">
+                Your feedback helps other farmers find reliable service providers.
+            </p>
+
+            <div class="rating-selector">
+
+                <button onclick="selectRating(1)">★</button>
+                <button onclick="selectRating(2)">★</button>
+                <button onclick="selectRating(3)">★</button>
+                <button onclick="selectRating(4)">★</button>
+                <button onclick="selectRating(5)">★</button>
+
+            </div>
+
+            <textarea
+                id="reviewComment"
+                placeholder="Share your experience..."
+                rows="4">
+            </textarea>
+
+            <button class="payment-btn" onclick="submitReview()">
+                Submit Review
+            </button>
+
+        </div>
 
     </div>
 
-</section>
+</div>
 
     <script src="script.js"></script>
 
