@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpg" href="images/favicon.jpg">
+
 </head>
 
 <body>
@@ -208,8 +210,8 @@
         <option value="Tractor & Ploughing">Tractor & Ploughing</option>
         <option value="Irrigation">Irrigation</option>
         <option value="Harvesting">Harvesting</option>
-        <option value="Crop Maintenance">Crop Maintenance</option>
-        <option value="Equipment">Equipment</option>
+        <option value="Pest Management">Pest Management</option>
+        <option value="Soil Testing">Soil Testing</option>
     </select>
 </div>
             <div class="service-grid">
@@ -266,27 +268,27 @@
                 </div>
 
 
-                <div class="service-card" onclick="selectService('Crop Maintenance')">
+                <div class="service-card" onclick="selectService('Pest Management')">
                     <div class="service-card-image maintenance">
     <img src="images/crop_maintenance.jpg" alt="Crop maintenance service">
 </div>
 
                     <div class="service-card-content">
-                        <h3>Crop Maintenance</h3>
-                        <p>Regular maintenance and field work</p>
+                        <h3>Pest Management</h3>
+                        <p>Protect crops with skilled pest-control support</p>
                         <span>Explore service →</span>
                     </div>
                 </div>
 
 
-                <div class="service-card" onclick="selectService('Equipment')">
+                <div class="service-card" onclick="selectService('Soil Testing')">
                     <div class="service-card-image equipment">
     <img src="images/agricultural_equipment.jpg" alt="Agricultural equipment">
 </div>
 
                     <div class="service-card-content">
-                        <h3>Equipment</h3>
-                        <p>Access agricultural equipment and tools</p>
+                        <h3>Soil Testing</h3>
+                        <p>Get soil sample collection and testing support</p>
                         <span>Explore service →</span>
                     </div>
                 </div>
@@ -677,9 +679,17 @@
             <h2>Welcome back</h2>
             <p class="auth-subtitle">Continue connecting with agricultural services.</p>
 
+            <div class="role-selection" aria-label="Select account type">
+                <button type="button" class="role-btn active" onclick="selectRole(this)">Farmer</button>
+                <button type="button" class="role-btn" onclick="selectRole(this)">Service Provider</button>
+            </div>
+
             <form onsubmit="handleLogin(event)">
-                <input type="text" placeholder="Email or Contact Number" required>
-                <input type="password" placeholder="Password" required>
+                <input
+    type="tel"
+    placeholder="Contact Number"
+    required
+>
 
                 <button type="submit" class="auth-submit">Login</button>
             </form>
@@ -692,27 +702,14 @@
 
         <!-- REGISTER -->
         <div id="registerForm" style="display:none;">
-            <h2>Create your account</h2>
-            <p class="auth-subtitle">Join AgriConnect and get started.</p>
-
-            <div class="role-selection">
-                <button type="button" class="role-btn active"
-                        onclick="selectRole(this)">
-                    Farmer
-                </button>
-
-                <button type="button" class="role-btn"
-                        onclick="selectRole(this)">
-                    Service Provider
-                </button>
-            </div>
+            <h2>Create a farmer account</h2>
+            <p class="auth-subtitle">Service providers use the contact number already registered by the administrator.</p>
 
             <form onsubmit="handleRegister(event)">
-                <input type="text" placeholder="Full Name" required>
-                <input type="tel" placeholder="Contact Number" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="text" placeholder="Location" required>
-                <input type="password" placeholder="Create Password" required>
+                <input name="name" type="text" placeholder="Full Name" required>
+                <input name="contact" type="tel" placeholder="Contact Number" required>
+                <input name="email" type="email" placeholder="Email Address">
+                <input name="location" type="text" placeholder="Location" required>
 
                 <button type="submit" class="auth-submit">
                     Create Account
@@ -742,71 +739,61 @@
             Find skilled workers for your agricultural needs.
         </p>
 
-        <div class="worker-list">
-
-            <div class="worker-card">
-                <div>
-                    <h3>Rajesh Kumar</h3>
-                    <p>Experienced agricultural worker</p>
-                    <span>★ 4.8 &nbsp; | &nbsp; 5 years experience</span>
-                </div>
-
-                <button onclick="requestService('Rajesh Kumar')">
-                    Request Service
-                </button>
-            </div>
-
-            <div class="worker-card">
-                <div>
-                    <h3>Manoj Yadav</h3>
-                    <p>Skilled service provider</p>
-                    <span>★ 4.7 &nbsp; | &nbsp; 4 years experience</span>
-                </div>
-
-                <button onclick="requestService('Manoj Yadav')">
-                    Request Service
-                </button>
-            </div>
-
+        <div class="worker-list" id="workerList">
+            <p style="padding: 20px;">
+                Loading available workers...
+            </p>
         </div>
+
 
         <div class="request-form" id="requestForm" style="display: none;">
 
-    <h3>Request this service</h3>
+            <h3>Request this service</h3>
 
-    <form onsubmit="submitServiceRequest(event)">
+            <form onsubmit="submitServiceRequest(event)">
 
-        <label>Select your land</label>
-        <select id="landSelect" required>
-            <option value="">Select land</option>
-            <option value="1">Bihta — 2.50 acres</option>
-            <option value="2">Patna — 1.75 acres</option>
-            <option value="3">Patna — 3.00 acres</option>
-            <option value="4">Kankarbagh — 1.50 acres</option>
-            <option value="5">Danapur — 4.25 acres</option>
-            <option value="6">Fatuha — 2.00 acres</option>
-        </select>
+                <label>Select your land</label>
 
-        <label>Required date</label>
-        <input type="date" id="requiredDate" required>
+                <select id="landSelect" required>
+                    <option value="">Select land</option>
+                </select>
 
-        <label>Duration (days)</label>
-        <input type="number" id="duration" min="1" placeholder="e.g. 2" required>
+                <label>Required date</label>
 
-        <label>Description</label>
-        <textarea
-            id="requestDescription"
-            placeholder="Describe what you need..."
-            rows="4">
-        </textarea>
+                <input
+                    type="date"
+                    id="requiredDate"
+                    required
+                >
 
-        <button type="submit" class="request-submit">
-            Submit Service Request
-        </button>
+                <label>Duration (days)</label>
 
-    </form>
+                <input
+                    type="number"
+                    id="duration"
+                    min="1"
+                    placeholder="e.g. 2"
+                    required
+                >
 
-</div>
+                <label>Description</label>
+
+                <textarea
+                    id="requestDescription"
+                    placeholder="Describe what you need..."
+                    rows="4">
+                </textarea>
+
+                <button
+                    type="submit"
+                    class="request-submit">
+                    Submit Service Request
+                </button>
+
+            </form>
+
+        </div>
+
     </div>
 </div>
 
@@ -830,25 +817,25 @@
 
         <div class="dashboard-stat">
             <span>🌾</span>
-            <h3>2</h3>
+            <h3 id="farmerLandCount">0</h3>
             <p>My Lands</p>
         </div>
 
         <div class="dashboard-stat">
             <span>📋</span>
-            <h3>3</h3>
+            <h3 id="farmerRequestCount">0</h3>
             <p>Service Requests</p>
         </div>
 
         <div class="dashboard-stat">
             <span>✓</span>
-            <h3>1</h3>
+            <h3 id="farmerCompletedCount">0</h3>
             <p>Completed</p>
         </div>
 
         <div class="dashboard-stat">
             <span>⏳</span>
-            <h3>2</h3>
+            <h3 id="farmerPendingCount">0</h3>
             <p>Pending</p>
         </div>
 
@@ -872,47 +859,9 @@
                 <span>Status</span>
             </div>
 
-            <div class="request-row">
-                <span>Tractor & Ploughing</span>
-                <span>28 Aug 2026</span>
-                <span class="status pending">Pending</span>
-            </div>
-
-            <div class="request-row">
-                <span>Plantation</span>
-                <span>30 Aug 2026</span>
-                <span class="status accepted">Accepted</span>
-            </div>
-
-            <div class="request-row">
-                <span>Harvesting</span>
-                <span>15 Aug 2026</span>
-                <span class="status completed">Completed</span>
-            </div>
-
         </div>
 
     </div>
-    <div class="request-card">
-
-    <div>
-        <span class="section-label">ACCEPTED</span>
-
-        <h3>Tractor & Ploughing</h3>
-
-        <p>Provider: Rajesh Kumar</p>
-        <p>Location: Bihta</p>
-        <p>Required Date: 28 Aug 2026</p>
-    </div>
-
-    <button
-        class="payment-btn"
-        onclick="openBooking('Tractor & Ploughing', 'Rajesh Kumar')">
-        View Booking & Pay →
-    </button>
-
-</div>
-
     <!-- My Land -->
     <div class="dashboard-panel">
 
@@ -927,25 +876,7 @@
     </button>
 </div>
 
-        <div class="land-list">
-
-            <div class="land-item">
-                <div>
-                    <h4>Bihta</h4>
-                    <p>2.50 acres · Irrigation available</p>
-                </div>
-                <span>Land #1</span>
-            </div>
-
-            <div class="land-item">
-                <div>
-                    <h4>Patna</h4>
-                    <p>1.75 acres · Irrigation available</p>
-                </div>
-                <span>Land #2</span>
-            </div>
-
-        </div>
+        <div class="land-list"></div>
         <div class="add-land-form" id="addLandForm" style="display: none;">
 
     <h4>Add New Land</h4>
@@ -1018,13 +949,13 @@
 
         <div class="dashboard-stat">
             <span>📋</span>
-            <h3>4</h3>
+            <h3 id="providerRequestCount">0</h3>
             <p>New Requests</p>
         </div>
 
         <div class="dashboard-stat">
             <span>✓</span>
-            <h3>2</h3>
+            <h3 id="providerBookingCount">0</h3>
             <p>Active Bookings</p>
         </div>
 
@@ -1036,7 +967,7 @@
 
         <div class="dashboard-stat">
             <span>✓</span>
-            <h3>18</h3>
+            <h3 id="providerCompletedCount">0</h3>
             <p>Completed Jobs</p>
         </div>
 
@@ -1054,60 +985,7 @@
         </div>
 
 
-        <div class="provider-request-list">
-
-            <div class="provider-request">
-
-                <div class="provider-request-info">
-                    <h4>Tractor & Ploughing</h4>
-                    <p>Farmer: Anita Mishra</p>
-                    <p>Location: Bihta · 2.50 acres</p>
-                    <p>Required: 28 Aug 2026</p>
-                </div>
-
-                <div class="provider-actions">
-                    <button
-                        class="accept-btn"
-                        onclick="handleRequest('accepted')">
-                        Accept
-                    </button>
-
-                    <button
-                        class="reject-btn"
-                        onclick="handleRequest('rejected')">
-                        Reject
-                    </button>
-                </div>
-
-            </div>
-
-
-            <div class="provider-request">
-
-                <div class="provider-request-info">
-                    <h4>Plantation</h4>
-                    <p>Farmer: Prem Chaudhary</p>
-                    <p>Location: Patna · 3.00 acres</p>
-                    <p>Required: 30 Aug 2026</p>
-                </div>
-
-                <div class="provider-actions">
-                    <button
-                        class="accept-btn"
-                        onclick="handleRequest('accepted')">
-                        Accept
-                    </button>
-
-                    <button
-                        class="reject-btn"
-                        onclick="handleRequest('rejected')">
-                        Reject
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
+        <div class="provider-request-list"></div>
 
     </div>
 
@@ -1122,7 +1000,7 @@
             </div>
         </div>
 
-        <div class="request-table">
+        <div class="request-table" id="providerBookingTable">
 
             <div class="request-row request-head">
                 <span>Service</span>
@@ -1130,45 +1008,7 @@
                 <span>Status</span>
             </div>
 
-            <div class="request-row">
-                <span>Harvesting</span>
-                <span>Shobha Sinha</span>
-                <span class="status accepted">Booked</span>
-            </div>
-
-            <div class="request-row">
-                <span>Irrigation</span>
-                <span>Sujeet Yadav</span>
-                <span class="status pending">In Progress</span>
-            </div>
-
         </div>
-        <div class="request-row">
-    <span>Harvesting</span>
-    <span>Shobha Sinha</span>
-    <span>
-        <button class="review-btn" onclick="showReview()">
-            Give Review
-        </button>
-    </span>
-</div>
-
-    </div>
-    <div class="request-row">
-
-    <div>
-        <strong>Tractor & Ploughing</strong>
-        <p>Farmer: Anita Mishra</p>
-        <p>Location: Bihta</p>
-    </div>
-
-    <button
-        class="review-btn"
-        onclick="completeJob()">
-        Mark Completed
-    </button>
-
-</div>
 
 </section>
 
@@ -1199,22 +1039,22 @@
 
                 <div>
                     <span>Provider</span>
-                    <strong id="bookingProvider">Rajesh Kumar</strong>
+                    <strong id="bookingProvider">—</strong>
                 </div>
 
                 <div>
                     <span>Location</span>
-                    <strong>Bihta</strong>
+                    <strong id="bookingLocation">—</strong>
                 </div>
 
                 <div>
                     <span>Start Date</span>
-                    <strong>28 Aug 2026</strong>
+                    <strong id="bookingStartDate">—</strong>
                 </div>
 
                 <div>
                     <span>Amount</span>
-                    <strong>₹2,500</strong>
+                    <strong id="bookingAmount">—</strong>
                 </div>
 
             </div>
