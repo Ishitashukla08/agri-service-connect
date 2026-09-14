@@ -113,7 +113,7 @@ button {
     padding: 0 6%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     background: white;
     border-bottom: 1px solid var(--border);

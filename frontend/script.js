@@ -391,84 +391,51 @@ async function handleLogin(event) {
 ===================================================== */
 
 async function handleRegister(event) {
-
     event.preventDefault();
 
     const form = event.target;
 
-    const name = form.elements.name?.value.trim();
-    const contact = form.elements.contact?.value.trim();
-    const email = form.elements.email?.value.trim();
-    const location = form.elements.location?.value.trim();
-
+    const name = form.elements.name.value.trim();
+    const contact = form.elements.contact.value.trim();
+    const email = form.elements.email.value.trim();
+    const location = form.elements.location.value.trim();
 
     if (!name || !contact || !location) {
-
-        showMessage(
-            "Please fill all registration details."
-        );
-
+        showMessage("Please fill all registration details.");
         return;
     }
 
-
     try {
+        const response = await fetch(`${API}/farmers/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                contact,
+                email: email || null,
+                location
+            })
+        });
 
-        const response =
-            await fetch(
-                `${API}/farmers/register`,
-                {
-                    method: "POST",
+        const data = await response.json();
 
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        name: name,
-                        contact: contact,
-                        email: email || null,
-                        location: location
-                    })
-                }
-            );
-
-
-        const data =
-            await response.json();
-
+        console.log("REGISTER RESPONSE:", data);
 
         if (!response.ok) {
-
-            showMessage(
-                data.message ||
-                "Registration failed."
-            );
-
+            showMessage(data.message || "Registration failed.");
             return;
         }
 
-
-        showNotification(
-            "Registration successful! Please login."
-        );
-
+        showNotification("Registration successful! Please login.");
 
         form.reset();
-
         showLogin();
 
     } catch (error) {
-
-        console.error(
-            "REGISTER ERROR:",
-            error
-        );
-
-        showMessage(
-            "Cannot connect to backend."
-        );
+        console.error("REGISTER ERROR:", error);
+        showMessage("Cannot connect to backend. Check the browser console.");
     }
 }
 
@@ -1616,16 +1583,13 @@ async function loadProviderRequests() {
             throw new Error(requests.message || "Failed to load service requests.");
         }
 
-        let bookings = [];
-        try {
-            const bookingsResponse = await fetch(
-                `${API}/bookings/worker/${currentWorker.worker_id}`
-            );
-            const bookingData = await bookingsResponse.json();
-            if (!bookingsResponse.ok) throw new Error(bookingData.message);
-            bookings = bookingData;
-        } catch (bookingError) {
-            console.warn("Provider bookings are unavailable:", bookingError);
+        const bookingsResponse = await fetch(
+            `${API}/bookings/worker/${currentWorker.worker_id}`
+        );
+        const bookings = await bookingsResponse.json();
+
+        if (!bookingsResponse.ok) {
+            throw new Error(bookings.message || "Failed to load provider bookings.");
         }
 
 
@@ -2462,10 +2426,63 @@ function completeJob() {
 /* =====================================================
    PAGE LOAD
 ===================================================== */
+/* =====================================================
+   HOMEPAGE REAL-TIME STATISTICS
+===================================================== */
+
+async function loadHomepageStats() {
+    try {
+        const response = await fetch(`${API}/stats`);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.message || "Failed to load homepage statistics."
+            );
+        }
+
+        const farmerCount =
+            document.getElementById("homepageFarmerCount");
+
+        const workerCount =
+            document.getElementById("homepageWorkerCount");
+
+        const serviceCount =
+            document.getElementById("homepageServiceCount");
+
+        const rating =
+            document.getElementById("homepageRating");
+
+        if (farmerCount) {
+            farmerCount.textContent = data.farmers;
+        }
+
+        if (workerCount) {
+            workerCount.textContent = data.workers;
+        }
+
+        if (serviceCount) {
+            serviceCount.textContent = data.services;
+        }
+
+        if (rating) {
+            rating.textContent = data.averageRating;
+        }
+
+    } catch (error) {
+        console.error(
+            "HOMEPAGE STATS ERROR:",
+            error
+        );
+    }
+}
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
+        loadHomepageStats();
 
         /*
            Restore farmer session

@@ -70,9 +70,47 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/bookings", bookingRoutes);
 
 
+// ================= HOMEPAGE STATS =================
+
+app.get("/api/stats", async (req, res) => {
+    try {
+        const [farmers] = await pool.query(
+            "SELECT COUNT(*) AS count FROM farmer"
+        );
+
+        const [workers] = await pool.query(
+            "SELECT COUNT(*) AS count FROM worker"
+        );
+
+        const [services] = await pool.query(
+            "SELECT COUNT(*) AS count FROM service"
+        );
+
+        const [ratings] = await pool.query(
+            "SELECT AVG(rating) AS average FROM review"
+        );
+
+        res.json({
+            farmers: farmers[0].count,
+            workers: workers[0].count,
+            services: services[0].count,
+            averageRating: ratings[0].average
+                ? Number(ratings[0].average).toFixed(1)
+                : "0.0"
+        });
+
+    } catch (error) {
+        console.error("Homepage stats error:", error);
+
+        res.status(500).json({
+            message: "Failed to load homepage statistics."
+        });
+    }
+});
+
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
-

@@ -36,10 +36,6 @@
             <a href="#how-it-works">How It Works</a>
             <a href="#reviews">Reviews</a>
             <a href="#contact">Contact</a>
-            <a href="#" onclick="openDashboard(); return false;">Dashboard</a>
-            <a href="#" onclick="openProviderDashboard(); return false;">
-    Provider Dashboard
-</a>
         </nav>
 
         <div class="nav-actions">
@@ -61,7 +57,7 @@
 
     <main>
 
-        <section class="hero" id="home">
+        <section class="hero" id="home"> 
 
             <div class="hero-content">
 
@@ -124,7 +120,7 @@
 
                 </div>
 
-                <button class="preview-btn" onclick="showMessage('Service search coming soon!')">
+                <button class="preview-btn" onclick="selectService('Tractor & Ploughing')">
                     View Service
                 </button>
 
@@ -132,45 +128,43 @@
 
         </section>
 
-
         <!-- ================= STATISTICS ================= -->
 
-        <section class="stats-section">
+<section class="stats-section">
 
-            <div class="stat">
-                <div class="stat-icon">👨‍🌾</div>
-                <div>
-                    <h2>5+</h2>
-                    <p>Registered Farmers</p>
-                </div>
-            </div>
+    <div class="stat">
+        <div class="stat-icon">👨‍🌾</div>
+        <div>
+            <h2 id="homepageFarmerCount">0</h2>
+            <p>Registered Farmers</p>
+        </div>
+    </div>
 
-            <div class="stat">
-                <div class="stat-icon">👷</div>
-                <div>
-                    <h2>6+</h2>
-                    <p>Service Providers</p>
-                </div>
-            </div>
+    <div class="stat">
+        <div class="stat-icon">👷</div>
+        <div>
+            <h2 id="homepageWorkerCount">0</h2>
+            <p>Service Providers</p>
+        </div>
+    </div>
 
-            <div class="stat">
-                <div class="stat-icon">🌾</div>
-                <div>
-                    <h2>8+</h2>
-                    <p>Available Services</p>
-                </div>
-            </div>
+    <div class="stat">
+        <div class="stat-icon">🌾</div>
+        <div>
+            <h2 id="homepageServiceCount">0</h2>
+            <p>Available Services</p>
+        </div>
+    </div>
 
-            <div class="stat">
-                <div class="stat-icon">⭐</div>
-                <div>
-                    <h2>4.7</h2>
-                    <p>Average Rating</p>
-                </div>
-            </div>
+    <div class="stat">
+        <div class="stat-icon">⭐</div>
+        <div>
+            <h2 id="homepageRating">0.0</h2>
+            <p>Average Rating</p>
+        </div>
+    </div>
 
-        </section>
-
+</section>
 
         <!-- ================= SERVICES ================= -->
 
@@ -807,9 +801,6 @@
             <p>Manage your land, services and requests from one place.</p>
         </div>
 
-        <button class="dashboard-service-btn" onclick="closeDashboard(); document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-            Find a Service →
-        </button>
     </div>
 
     <!-- Summary cards -->
