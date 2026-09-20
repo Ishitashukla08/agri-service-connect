@@ -3,7 +3,7 @@
    FRONTEND ↔ BACKEND
 ===================================================== */
 
-const API = window.AGRI_API_URL || "http://localhost:5000/api";
+const API = "http://localhost:5001/api";
 
 let currentFarmer =
     JSON.parse(localStorage.getItem("agriFarmer")) || null;
